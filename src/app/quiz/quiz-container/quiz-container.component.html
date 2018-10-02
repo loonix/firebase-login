@@ -1,26 +1,73 @@
-<div *ngFor="let quiz of quiz | async; let i = index" [attr.data-index]="i">
-  <div>{{i + 1}} - {{quiz.question}}</div>
-  <div>
-    <button class="btn btn-success" (click)="onEdit(quiz)">
-      <i class="fa fa-edit"></i>edit
-    </button>
-    <button class="btn btn-danger" (click)="onDelete(quiz)">
-      <i class="fa fa-remove"></i>remove
-    </button>
+<div class="row">
+  <div class="col-md-4 order-md-2 mb-4">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted">Add Question</span>
+    </h4>
+
+    <form #f="ngForm">
+      <div class="form-group">
+        <input [(ngModel)]="question" name="question" type="text" class="form-control" placeholder="Question"
+          required>
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="image" name="image" type="text" class="form-control" placeholder="URL" required>
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="status" name="status" type="text" class="form-control" placeholder="Status" required>
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="author" name="author" type="text" class="form-control" placeholder="Author" required>
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="category" name="category" type="text" class="form-control" placeholder="Category" required>
+      </div>
+      <p *ngIf="loading">
+        <i class="fa fa-spinner fa-spin"></i>
+      </p>
+      <div class="form-group">
+        <button class="btn btn-primary" [disabled]="!f.valid" (click)="onSave()">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Quiz Entries</h4>
+
+
+
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Question</th>
+          <th scope="col">Status</th>
+          <th scope="col">Category</th>
+          <th scope="col">Author</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let quiz of quiz | async; let i = index" [attr.data-index]="i">
+          <td><img [src]="quiz.image" alt="" width="50" height="50"></td>
+          <td>{{quiz.question}}</td>
+          <td>{{quiz.status}}</td>
+          <td>{{quiz.category}}</td>
+          <td>{{quiz.author}}</td>
+          <td>
+            <button class="btn btn-success" (click)="onEdit(quiz)">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="onDelete(quiz)">
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
-
-
-<form #f="ngForm">
-  <div class="form-group">
-    <input [(ngModel)]="myQuiz" name="myQuiz" type="text" class="form-control" placeholder="Enter quiz" required>
-  </div>
-  <p *ngIf="loading">
-    <i class="fa fa-spinner fa-spin"></i>
-  </p>
-  <div class="form-group">
-    <button class="btn btn-primary" [disabled]="!f.valid" (click)="onSave()">
-      Save Task
-    </button>
-  </div>
-</form>
