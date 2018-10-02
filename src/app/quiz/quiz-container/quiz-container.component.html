@@ -1,3 +1,26 @@
-<p>
-  quiz-container works!
-</p>
+<div *ngFor="let quiz of quiz | async; let i = index" [attr.data-index]="i">
+  <div>{{i + 1}} - {{quiz.question}}</div>
+  <div>
+    <button class="btn btn-success" (click)="onEdit(quiz)">
+      <i class="fa fa-edit"></i>edit
+    </button>
+    <button class="btn btn-danger" (click)="onDelete(quiz)">
+      <i class="fa fa-remove"></i>remove
+    </button>
+  </div>
+</div>
+
+
+<form #f="ngForm">
+  <div class="form-group">
+    <input [(ngModel)]="myQuiz" name="myQuiz" type="text" class="form-control" placeholder="Enter quiz" required>
+  </div>
+  <p *ngIf="loading">
+    <i class="fa fa-spinner fa-spin"></i>
+  </p>
+  <div class="form-group">
+    <button class="btn btn-primary" [disabled]="!f.valid" (click)="onSave()">
+      Save Task
+    </button>
+  </div>
+</form>
