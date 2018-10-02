@@ -7,10 +7,16 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TasksComponent } from './tasks/tasks.component';
+import { QuizContainerComponent } from './quiz/quiz-container/quiz-container.component';
+import { CategoriesContainerComponent } from './categories/categories-container/categories-container.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TasksComponent,
+    QuizContainerComponent,
+    CategoriesContainerComponent
   ],
   imports: [
     BrowserModule,

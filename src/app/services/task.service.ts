@@ -1,39 +1,39 @@
-import { config } from "./app.config";
-import { Task } from "./app.model";
-import { Injectable } from "@angular/core";
+import { config } from '../app.config';
+import { Task } from '../app.model';
+import { Injectable } from '@angular/core';
 import {
   AngularFirestoreDocument,
   AngularFirestore,
   AngularFirestoreCollection
-} from "angularfire2/firestore";
+} from 'angularfire2/firestore';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class TaskService {
   tasks: AngularFirestoreCollection<Task>;
   private taskDoc: AngularFirestoreDocument<Task>;
 
   constructor(private db: AngularFirestore) {
-    //Get the tasks collection
+    // Get the tasks collection
     this.tasks = db.collection<Task>(config.collection_endpoint);
   }
 
   addTask(task) {
-    //Add the new task to the collection
+    // Add the new task to the collection
     this.tasks.add(task);
-  } //addTask
+  } // addTask
 
   updateTask(id, update) {
-    //Get the task document
+    // Get the task document
     this.taskDoc = this.db.doc<Task>(`${config.collection_endpoint}/${id}`);
     this.taskDoc.update(update);
- } //updateTask
+ } // updateTask
 
  deleteTask(id) {
-  //Get the task document
+  // Get the task document
   this.taskDoc = this.db.doc<Task>(`${config.collection_endpoint}/${id}`);
-  //Delete the document
+  // Delete the document
   this.taskDoc.delete();
-} //deleteTask
+} // deleteTask
 }

@@ -1,3 +1,3 @@
 export const config = {
-  collection_endpoint: "tasks"
+  collection_endpoint: 'tasks'
 };
