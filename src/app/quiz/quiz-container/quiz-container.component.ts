@@ -42,7 +42,7 @@ export class QuizContainerComponent implements OnInit {
       );
   }
 
-  onEdit(quiz) {
+  onEdit(quiz): void {
     console.log(quiz);
     this.quizToEdit = quiz;
     this.editMode = true;
@@ -54,7 +54,7 @@ export class QuizContainerComponent implements OnInit {
     this.category = quiz.category;
   }
 
-  onSave() {
+  onSave(): void {
     const quiz = {
       question: this.question,
       status: this.status,
@@ -78,7 +78,7 @@ export class QuizContainerComponent implements OnInit {
     this.category = '';
   }
 
-  onDelete(quiz) {
+  onDelete(quiz): void {
     const quizId = quiz.id;
     this.quizService.deleteQuiz(quizId);
   }

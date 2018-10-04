@@ -4,4 +4,5 @@ export interface Quiz {
   author: string;
   status: string;
   image: string;
+  answers: string[];
 }
