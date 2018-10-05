@@ -9,12 +9,14 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuizContainerComponent } from './quiz/quiz-container/quiz-container.component';
 import { CategoriesContainerComponent } from './categories/categories-container/categories-container.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizContainerComponent,
-    CategoriesContainerComponent
+    CategoriesContainerComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

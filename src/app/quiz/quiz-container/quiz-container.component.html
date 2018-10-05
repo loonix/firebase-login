@@ -1,43 +1,42 @@
 <div class="row">
-  <div class="col-md-4 order-md-2 mb-4">
-    <h4 class="d-flex justify-content-between align-items-center mb-3">
-      <span class="text-muted">Add Question</span>
-    </h4>
-
-    <form #f="ngForm">
-      <div class="form-group">
-        <input [(ngModel)]="question" name="question" type="text" class="form-control" placeholder="Question"
-          required>
-      </div>
-      <div class="form-group">
-        <input [(ngModel)]="image" name="image" type="text" class="form-control" placeholder="URL" required>
-      </div>
-      <div class="form-group">
-        <input [(ngModel)]="status" name="status" type="text" class="form-control" placeholder="Status" required>
-      </div>
-      <div class="form-group">
-        <input [(ngModel)]="author" name="author" type="text" class="form-control" placeholder="Author" required>
-      </div>
-      <div class="form-group">
-        <input [(ngModel)]="category" name="category" type="text" class="form-control" placeholder="Category" required>
-      </div>
-      <p *ngIf="loading">
-        <i class="fa fa-spinner fa-spin"></i>
-      </p>
-      <div class="form-group">
-        <button class="btn btn-primary" [disabled]="!f.valid" (click)="onSave()">
-          Save
-        </button>
-      </div>
-    </form>
+  <div class="col-md-4 order-md-2 mb-4 card">
+    <div class="card-body">
+      <h4 class="card-title">
+        <span class="text-muted">Add Question</span>
+      </h4>
+      <form #f="ngForm">
+        <div class="form-group">
+          <input [(ngModel)]="question" name="question" type="text" class="form-control" placeholder="Question"
+            required>
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="image" name="image" type="text" class="form-control" placeholder="URL" required>
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="status" name="status" type="text" class="form-control" placeholder="Status" required>
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="author" name="author" type="text" class="form-control" placeholder="Author" required>
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="category" name="category" type="text" class="form-control" placeholder="Category"
+            required>
+        </div>
+        <p *ngIf="loading">
+          <i class="fa fa-spinner fa-spin"></i>
+        </p>
+        <div class="form-group">
+          <button class="btn btn-outline-light btn-block" [disabled]="!f.valid" (click)="onSave()">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <div class="col-md-8 order-md-1">
     <h4 class="mb-3">Quiz Entries</h4>
-
-
-
-    <table class="table table-responsive">
+    <table class="table table-dark table-responsive">
       <thead>
         <tr>
           <th scope="col">Image</th>
@@ -45,7 +44,6 @@
           <th scope="col">Status</th>
           <th scope="col">Category</th>
           <th scope="col">Author</th>
-          <th scope="col"></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -57,17 +55,23 @@
           <td>{{quiz.category}}</td>
           <td>{{quiz.author}}</td>
           <td>
-            <button class="btn btn-success" (click)="onEdit(quiz)">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-          <td>
-            <button class="btn btn-danger" (click)="onDelete(quiz)">
-              <i class="fa fa-remove"></i>
-            </button>
+            <div class="btn-group" role="group" aria-label="Options">
+              <button class="btn btn-outline-success" (click)="onEdit(quiz)">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-outline-danger" (click)="onDelete(quiz)">
+                <i class="fa fa-remove"></i>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="col-md-12 order-md-3">
+    <h4 class="mb-3">Categories</h4>
+    <app-categories-container></app-categories-container>
+
   </div>
 </div>
