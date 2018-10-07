@@ -18,17 +18,65 @@
         <div class="form-group">
           <input [(ngModel)]="author" name="author" type="text" class="form-control" placeholder="Author" required>
         </div>
+
+        <!-- <select [(ngModel)]="categoryName" formControlName="city" class="form-control input-sm">
+          <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.categoryName}}</option>
+        </select> -->
+
         <div class="form-group">
           <input [(ngModel)]="category" name="category" type="text" class="form-control" placeholder="Category"
             required>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-check"></i></div>
+            </div>
+            <input [(ngModel)]="correctAnswer" name="correctAnswer" type="text" class="form-control" placeholder="Correct Answer"
+              required>
+          </div>
+        </div>
+        <div class="form-group">
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-times"></i></div>
+            </div>
+            <input [(ngModel)]="wrongAnswer1" name="wrongAnswer1" type="text" class="form-control" placeholder="Wrong Answer 1"
+              required>
+          </div>
+        </div>
+        <div class="form-group">
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-times"></i></div>
+            </div>
+            <input [(ngModel)]="wrongAnswer2" name="wrongAnswer2" type="text" class="form-control" placeholder="Wrong Answer 2"
+              required>
+          </div>
+        </div>
+        <div class="form-group">
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-times"></i></div>
+            </div>
+            <input [(ngModel)]="wrongAnswer3" name="wrongAnswer3" type="text" class="form-control" placeholder="Wrong Answer 3"
+              required>
+          </div>
         </div>
         <p *ngIf="loading">
           <i class="fa fa-spinner fa-spin"></i>
         </p>
         <div class="form-group">
+          <button class="btn btn-outline-light btn-block" (click)="clearValues()">
+            Clear Values
+          </button>
           <button class="btn btn-outline-light btn-block" [disabled]="!f.valid" (click)="onSave()">
             Save
           </button>
+
         </div>
       </form>
     </div>
@@ -67,11 +115,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="col-md-12 order-md-3">
-    <h4 class="mb-3">Categories</h4>
-    <app-categories-container></app-categories-container>
-
   </div>
 </div>

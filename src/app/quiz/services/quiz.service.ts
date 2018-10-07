@@ -17,8 +17,8 @@ export class QuizService {
     this.quiz = db.collection<Quiz>(quizConfig.collection_endpoint);
   }
 
-  addQuiz(task): void {
-    this.quiz.add(task);
+  addQuiz(quiz): void {
+    this.quiz.add(quiz);
   }
 
   updateQuiz(id, update): void {

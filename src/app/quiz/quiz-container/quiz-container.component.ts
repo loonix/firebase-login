@@ -18,6 +18,10 @@ export class QuizContainerComponent implements OnInit {
   author: string;
   image: string;
   category: string;
+  correctAnswer: string;
+  wrongAnswer1: string;
+  wrongAnswer2: string;
+  wrongAnswer3: string;
   editMode: boolean;
   quizToEdit: any = {};
 
@@ -52,6 +56,11 @@ export class QuizContainerComponent implements OnInit {
     this.author = quiz.author;
     this.image = quiz.image;
     this.category = quiz.category;
+    // needs to be refactored
+    this.correctAnswer = quiz.correctAnswer;
+    this.wrongAnswer1 = quiz.wrongAnswer1;
+    this.wrongAnswer2 = quiz.wrongAnswer2;
+    this.wrongAnswer3 = quiz.wrongAnswer3;
   }
 
   onSave(): void {
@@ -60,7 +69,11 @@ export class QuizContainerComponent implements OnInit {
       status: this.status,
       author: this.author,
       image: this.image,
-      category: this.category
+      category: this.category,
+      correctAnswer: this.correctAnswer,
+      wrongAnswer1: this.wrongAnswer1,
+      wrongAnswer2: this.wrongAnswer2,
+      wrongAnswer3: this.wrongAnswer3
     };
     if (!this.editMode) {
       console.log(quiz);
@@ -71,13 +84,20 @@ export class QuizContainerComponent implements OnInit {
     }
     this.editMode = false;
 
+    this.clearValues();
+  }
+
+  clearValues(): void {
     this.question = '';
     this.status = '';
     this.author = '';
     this.image = '';
     this.category = '';
+    this.correctAnswer = '';
+    this.wrongAnswer1 = '';
+    this.wrongAnswer2 = '';
+    this.wrongAnswer3 = '';
   }
-
   onDelete(quiz): void {
     const quizId = quiz.id;
     this.quizService.deleteQuiz(quizId);

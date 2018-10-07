@@ -1,3 +1,56 @@
-<p>
-  categories-container works!
-</p>
+<div class="row">
+  <div class="col-md-4 order-md-2 mb-4 card">
+    <div class="card-body">
+      <h4 class="card-title">
+        <span class="text-muted">Add Category</span>
+      </h4>
+      <form #f="ngForm">
+        <div class="form-group">
+          <input [(ngModel)]="categoryName" name="categoryName" type="text" class="form-control" placeholder="Category"
+            required>
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="categoryImage" name="categoryImage" type="text" class="form-control" placeholder="URL" required>
+        </div>
+        <p *ngIf="loading">
+          <i class="fa fa-spinner fa-spin"></i>
+        </p>
+        <div class="form-group">
+          <button class="btn btn-outline-light btn-block" [disabled]="!f.valid" (click)="onSave()">
+            Save
+          </button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Categories</h4>
+    <table class="table table-dark table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cat of categories | async; let i = index" [attr.data-index]="i">
+          <td><img [src]="cat.categoryImage" alt="" width="50" height="50"></td>
+          <td>{{cat.categoryName}}</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Options">
+              <button class="btn btn-outline-success" (click)="onEdit(cat)">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-outline-danger" (click)="onDelete(cat)">
+                <i class="fa fa-remove"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
